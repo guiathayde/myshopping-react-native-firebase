@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "315470186175",
+    "project_id": "shopping-list-395a5",
+    "storage_bucket": "shopping-list-395a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:315470186175:android:3a7166f07e586c3ddda80a",
+        "android_client_info": {
+          "package_name": "com.guiathayde.myshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "315470186175-b0hmvqerh463ah99jvn4oa605b6tj131.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.guiathayde.myshopping",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "315470186175-ebd6ldco8rhvghvio972o4eg9jud5bli.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPlahbG76Cqt97wTv2JpfC78BnaEKoEOY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "315470186175-ebd6ldco8rhvghvio972o4eg9jud5bli.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "315470186175-2f0b6bije3pi73kpjck1h1rms1eijcrp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.guiathayde.myshopping"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,4 +1,4 @@
-package com.myshopping;
+package com.guiathayde.myshopping;
 
 import android.app.Application;
 import android.content.Context;
