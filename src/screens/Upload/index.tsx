@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as ImagePicker from 'expo-image-picker';
+import storage from '@react-native-firebase/storage';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Photo } from '../../components/Photo';
 
 import { Container, Content, Progress, Transferred } from './styles';
+import { Alert } from 'react-native';
 
 export function Upload() {
   const [image, setImage] = useState('');
+  const [bytesTransferred, setBytesTransferred] = useState('');
+  const [progress, setProgress] = useState('0');
 
   async function handlePickImage() {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -24,27 +28,49 @@ export function Upload() {
         setImage(result.uri);
       }
     }
-  };
+  }
+
+  const handleUpload = useCallback(() => {
+    const fileName = new Date().getTime();
+    const MIME = image.match(/\.(?:.(?!\.))+$/);
+    const reference = storage().ref(`/images/${fileName}${MIME}`);
+
+    const uploadTask = reference.putFile(image);
+
+    uploadTask.on('state_changed', (taskSnapshot) => {
+      const percent = (
+        (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+        100
+      ).toFixed(0);
+      setProgress(percent);
+
+      setBytesTransferred(
+        `${taskSnapshot.bytesTransferred} transferido de ${taskSnapshot.totalBytes}`
+      );
+    });
+
+    uploadTask
+      .then(() => {
+        Alert.alert('Upload concluído!');
+      })
+      .catch((error) => console.log(error));
+  }, [image]);
 
   return (
     <Container>
-      <Header title="Lista de compras" />
+      <Header title="Upload de Fotos" />
 
-      <Content>
+      <Content
+        contentContainerStyle={{ alignItems: 'center' }}
+        showsVerticalScrollIndicator={false}
+      >
         <Photo uri={image} onPress={handlePickImage} />
 
-        <Button
-          title="Fazer upload"
-          onPress={() => { }}
-        />
+        <Button title="Fazer upload" onPress={handleUpload} />
 
-        <Progress>
-          0%
-        </Progress>
+        <Progress>{progress}%</Progress>
 
-        <Transferred>
-          0 de 100 bytes transferido
-        </Transferred>
+        <Transferred>{bytesTransferred}</Transferred>
       </Content>
     </Container>
   );

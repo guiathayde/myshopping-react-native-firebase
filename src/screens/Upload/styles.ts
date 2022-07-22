@@ -6,9 +6,9 @@ export const Container = styled.View`
   align-items: center;
 `;
 
-export const Content = styled.View`
+export const Content = styled.ScrollView`
   width: 270px;
-  align-items: center;
+  margin: 8px;
 `;
 
 export const Progress = styled.Text`
